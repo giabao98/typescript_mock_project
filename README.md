@@ -1,0 +1,1 @@
+# typescript_mock_project
