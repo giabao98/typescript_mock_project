@@ -1,5 +1,5 @@
-import './style.css';
-import './utilities.css';
+import "./style.css";
+import "./utilities.css";
 
 const listMap = document.querySelector(".list-map");
 const onClickList = document.querySelector(".header-icon-list");
@@ -15,16 +15,16 @@ closeListMap.addEventListener("click", () => {
 
 const callApiFunction = (link: any) => {
   fetch(link)
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {
-    var products = document.querySelector(".container_products");
-    products.innerHTML = "";
-    data.forEach((item: any) => {
-      var newProduct = document.createElement("div");
-      newProduct.classList.add("product_item");
-      newProduct.innerHTML = `
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      var products = document.querySelector(".container_products");
+      products.innerHTML = "";
+      data.forEach((item: any) => {
+        var newProduct = document.createElement("div");
+        newProduct.classList.add("product_item");
+        newProduct.innerHTML = `
       <a href='detail.html#${item.id}' class='link_item'> 
       <div class="product_item-img" id="${item.id}">
       <img src=${item.image} alt="abc" />
@@ -57,46 +57,48 @@ const callApiFunction = (link: any) => {
       </div>
       </a>
     `;
-      products.appendChild(newProduct);
+        products.appendChild(newProduct);
+      });
     });
-  })
-}
+};
 
-
-
-var mockData = callApiFunction("https://utc2ranking.azurewebsites.net/api/Product")
+var mockData = callApiFunction(
+  "https://utc2ranking.azurewebsites.net/api/Product"
+);
 
 var searchInput = document.querySelector(".navbar_input input");
 searchInput.addEventListener("input", function (e: any) {
   let txtSearch = e.target.value.trim().toLowerCase();
-  callApiFunction(`https://utc2ranking.azurewebsites.net/api/Product/Search?keysearch=${txtSearch}`)
+  callApiFunction(
+    `https://utc2ranking.azurewebsites.net/api/Product/Search?keysearch=${txtSearch}`
+  );
 });
 
-function changeProductList(type: any, element:any ) {
-  let tabs: any = document.getElementsByClassName("tab") 
-  for(let i = 0 ; i < tabs.length; i++) {
-    tabs[i].style.backgroundColor = '#fff'
+function changeProductList(type: any, element: any) {
+  let tabs: any = document.getElementsByClassName("tab");
+  for (let i = 0; i < tabs.length; i++) {
+    tabs[i].style.backgroundColor = "#fff";
   }
-  element.style.backgroundColor = '#ebf2ff'
+  element.style.backgroundColor = "#ebf2ff";
 
-   callApiFunction(`https://utc2ranking.azurewebsites.net/api/Product/Category?category=${type}`)
+  callApiFunction(
+    `https://utc2ranking.azurewebsites.net/api/Product/Category?category=${type}`
+  );
 }
-
-
 
 const id = window.location.hash.slice(1);
 
 const callApiFunctionDetaill = (link: any) => {
   fetch(link)
     .then((res) => {
-        return res.json();
+      return res.json();
     })
     .then((data) => {
       var productDetall: any = document.querySelector(".detail__container");
       productDetall.innerHTML = "";
-        var newProduct = document.createElement("div");
-        newProduct.classList.add("detail_item");
-        newProduct.innerHTML = `<div class="detail__main-first">
+      var newProduct = document.createElement("div");
+      newProduct.classList.add("detail_item");
+      newProduct.innerHTML = `<div class="detail__main-first">
         <div class="detail__main-img">
             <img src="${data.image}" alt="">
         </div>
@@ -127,14 +129,11 @@ const callApiFunctionDetaill = (link: any) => {
         <i class="fab fa-twitter-square"></i>
         <i class="fab fa-facebook-square"></i>
         <i class="fab fa-github"></i>
-      </div>`
+      </div>`;
       productDetall.appendChild(newProduct);
     });
 };
 
-var detail = callApiFunctionDetaill(`https://utc2ranking.azurewebsites.net/api/Product/GetById?id=${id}`)
-
-
-
-
-
+var detail = callApiFunctionDetaill(
+  `https://utc2ranking.azurewebsites.net/api/Product/GetById?id=${id}`
+);

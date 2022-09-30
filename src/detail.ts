@@ -1,17 +1,16 @@
-
 const id = window.location.hash.slice(1);
 
 const callApiFunction = (link) => {
   fetch(link)
     .then((res) => {
-        return res.json();
+      return res.json();
     })
     .then((data) => {
       var productDetall: any = document.querySelector(".detail__container");
       productDetall.innerHTML = "";
-        var newProduct = document.createElement("div");
-        newProduct.classList.add("detail_item");
-        newProduct.innerHTML = `<div class="detail__main-first">
+      var newProduct = document.createElement("div");
+      newProduct.classList.add("detail_item");
+      newProduct.innerHTML = `<div class="detail__main-first">
         <div class="detail__main-img">
             <img src="${data.image}" alt="">
         </div>
@@ -42,9 +41,11 @@ const callApiFunction = (link) => {
         <i class="fab fa-twitter-square"></i>
         <i class="fab fa-facebook-square"></i>
         <i class="fab fa-github"></i>
-      </div>`
+      </div>`;
       productDetall.appendChild(newProduct);
     });
 };
 
-var detail = callApiFunction(`https://utc2ranking.azurewebsites.net/api/Product/GetById?id=${id}`)
+var detail = callApiFunction(
+  `https://utc2ranking.azurewebsites.net/api/Product/GetById?id=${id}`
+);

@@ -53,7 +53,7 @@ a {
   border-radius: 5px;
   box-shadow: rgba(90, 94, 97, 0.3) 0px 1px 2px 0px,
     rgba(118, 124, 129, 0.15) 0px 0px 2px 0px;
-    padding: 10px;
+  padding: 10px;
 }
 .display-flex {
   display: flex;
